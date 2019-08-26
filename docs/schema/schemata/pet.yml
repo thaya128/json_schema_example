@@ -1,0 +1,49 @@
+---
+"$schema": http://json-schema.org/draft-04/hyper-schema
+id: schemata/pet
+title: Pets API
+description: Pets API
+
+definitions:
+
+  id:
+    type: integer
+    description: id
+    example: 1
+
+  name:
+    type: string
+    description: example_name
+    example: example_name
+
+  email:
+    type: string
+    description: mail address
+    example: example@example
+
+  pet:
+    type: object
+    title: pet
+    description: pet
+    properties:
+      id:
+        "$ref": "/schemata/pet#/definitions/id"
+      name:
+        "$ref": "/schemata/pet#/definitions/name"
+      contact_email:
+        "$ref": "/schemata/pet#/definitions/email"
+
+  pets:
+    type: array
+    description: pet list
+    items:
+      "$ref": "/schemata/pet#/definitions/pet"
+
+links:
+  - title: GET /pets
+    description: get pet list
+    rel: self
+    href: /pets
+    method: GET
+    targetSchema:
+      "$ref": "/schemata/pet#/definitions/pets"
