@@ -4,6 +4,73 @@
     "object"
   ],
   "definitions": {
+    "dog": {
+      "$schema": "http://json-schema.org/draft-04/hyper-schema",
+      "title": "Pets API",
+      "description": "Pets API",
+      "definitions": {
+        "id": {
+          "type": [
+            "integer"
+          ],
+          "description": "id",
+          "example": 1
+        },
+        "name": {
+          "type": [
+            "string"
+          ],
+          "description": "example_name",
+          "example": "example_name"
+        },
+        "email": {
+          "type": [
+            "string"
+          ],
+          "description": "mail address",
+          "example": "example@example"
+        },
+        "dog": {
+          "type": [
+            "object"
+          ],
+          "title": "dog",
+          "description": "dog",
+          "properties": {
+            "id": {
+              "$ref": "#/definitions/dog/definitions/id"
+            },
+            "name": {
+              "$ref": "#/definitions/dog/definitions/name"
+            },
+            "contact_email": {
+              "$ref": "#/definitions/dog/definitions/email"
+            }
+          }
+        },
+        "dogs": {
+          "type": [
+            "array"
+          ],
+          "description": "dog list",
+          "items": {
+            "$ref": "#/definitions/dog/definitions/dog"
+          }
+        }
+      },
+      "links": [
+        {
+          "title": "GET /api/v1/dogs",
+          "description": "get dog list",
+          "rel": "self",
+          "href": "/api/v1/dogs",
+          "method": "GET",
+          "targetSchema": {
+            "$ref": "#/definitions/dog/definitions/dogs"
+          }
+        }
+      ]
+    },
     "pet": {
       "$schema": "http://json-schema.org/draft-04/hyper-schema",
       "title": "Pets API",
@@ -73,6 +140,9 @@
     }
   },
   "properties": {
+    "dog": {
+      "$ref": "#/definitions/dog"
+    },
     "pet": {
       "$ref": "#/definitions/pet"
     }

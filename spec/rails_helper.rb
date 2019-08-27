@@ -59,8 +59,18 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 
+  config.use_transactional_fixtures = true
+
   # Include Factory Bot syntax to simplify calls to factories
   config.include FactoryBot::Syntax::Methods
+
+  # database cleaner settings
+  config.use_transactional_fixtures = false
+  config.before(:suite) { DatabaseCleaner.clean_with :truncation }
+  config.before(:each)  { DatabaseCleaner.strategy = :transaction }
+  config.before(:each, type: :feature) { DatabaseCleaner.strategy = :truncation }
+  config.before(:each)  { DatabaseCleaner.start }
+  config.after(:each)   { DatabaseCleaner.clean }
 
   # Json Schema settings
   config.add_setting :committee_options

@@ -37,9 +37,12 @@ module JsonSchemaExample
     config.generators do |g|
       g.test_framework :rspec,
                        fixtures: false,
+                       controller_specs: false,
                        view_specs: false,
+                       request_specs: true,
                        helper_specs: false,
                        routing_specs: false
+      g.fixture_replacement :factory_bot, dir: "spec/factories"
     end
   end
 end
