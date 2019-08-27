@@ -94,9 +94,19 @@ RSpec.configure do |config|
   Kernel.srand config.seed
 =end
 
-  RSpec.configure do |config|
-    config.before(:all) do
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :truncation
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
+
+  config.before(:all) do
       FactoryBot.reload
-    end
   end
 end

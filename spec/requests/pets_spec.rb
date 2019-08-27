@@ -10,8 +10,7 @@ RSpec.describe "Pets", type: :request do
   describe "GET /pets" do
     it "conform json schema" do
       get pets_path
-      #assert_schema_conform
-      assert_response_schema_confirm
+      assert_schema_conform
     end
   end
 end
