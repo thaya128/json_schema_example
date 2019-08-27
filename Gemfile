@@ -41,7 +41,6 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_bot'
   gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
-  gem 'database_cleaner'
 
   # pry
   gem 'pry-rails'
